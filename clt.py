@@ -4,7 +4,7 @@ from file_pb2_grpc import MonServiceStub
 
 def run():
     # Modifiez l'adresse IP et le port pour correspondre à ceux du serveur distant
-    channel = grpc.insecure_channel("172.23.196.252:50051")
+    channel = grpc.insecure_channel("mets ton ip:50051")
     stub = MonServiceStub(channel)
 
     # Appel au service DireBonjour
