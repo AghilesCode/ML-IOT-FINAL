@@ -2,6 +2,9 @@ from concurrent import futures
 import grpc
 import file_pb2
 import file_pb2_grpc
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+import io
 
 class MonServiceServicer(file_pb2_grpc.MonServiceServicer):
     def DireBonjour(self, request, context):
@@ -21,11 +24,17 @@ class MonServiceServicer(file_pb2_grpc.MonServiceServicer):
     
     def UploadImage(self, request_iterator, context):
         for chunk in request_iterator:
-            # Traitez chaque morceau d'image ici (par exemple, sauvegardez-le sur le serveur)
-            print(f"Received {len(chunk.data)} bytes of image data.")
-        
+            # Traitez chaque morceau d'image ici (par exemple, affichez-le ou enregistrez-le)
+            image_data = chunk.data
+            image_array = bytearray(image_data)
+
+            # Utilisez Matplotlib pour afficher l'image
+            image = mpimg.imread(io.BytesIO(image_array), format='JPG')
+            plt.imshow(image)
+            plt.show()
+
         # Vous pouvez renvoyer une réponse indiquant le succès de l'opération
-        return your_proto_file_pb2.UploadStatus(success=True)
+        return streaming_pb2.UploadStatus(success=True)
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
