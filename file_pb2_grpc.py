@@ -24,6 +24,11 @@ class MonServiceStub(object):
                 request_serializer=file__pb2.Coordonnees.SerializeToString,
                 response_deserializer=file__pb2.ReponseCoordonnees.FromString,
                 )
+        self.UploadImage = channel.stream_unary(
+                '/monprojetgrpc.MonService/UploadImage',
+                request_serializer=file__pb2.ImageChunk.SerializeToString,
+                response_deserializer=file__pb2.UploadStatus.FromString,
+                )
 
 
 class MonServiceServicer(object):
@@ -41,6 +46,12 @@ class MonServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def UploadImage(self, request_iterator, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_MonServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -53,6 +64,11 @@ def add_MonServiceServicer_to_server(servicer, server):
                     servicer.RecupererCoordonnees,
                     request_deserializer=file__pb2.Coordonnees.FromString,
                     response_serializer=file__pb2.ReponseCoordonnees.SerializeToString,
+            ),
+            'UploadImage': grpc.stream_unary_rpc_method_handler(
+                    servicer.UploadImage,
+                    request_deserializer=file__pb2.ImageChunk.FromString,
+                    response_serializer=file__pb2.UploadStatus.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -95,5 +111,22 @@ class MonService(object):
         return grpc.experimental.unary_unary(request, target, '/monprojetgrpc.MonService/RecupererCoordonnees',
             file__pb2.Coordonnees.SerializeToString,
             file__pb2.ReponseCoordonnees.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def UploadImage(request_iterator,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.stream_unary(request_iterator, target, '/monprojetgrpc.MonService/UploadImage',
+            file__pb2.ImageChunk.SerializeToString,
+            file__pb2.UploadStatus.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
