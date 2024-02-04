@@ -21,6 +21,20 @@ class MonServiceServicer(file_pb2_grpc.MonServiceServicer):
         # Renvoyer un message de remerciement dans la réponse
         return file_pb2.ReponseCoordonnees(message="Merci pour les coordonnées!")
 
+    def UploadImage(self, request_iterator, context):
+        for chunk in request_iterator:
+            # Traitez chaque morceau d'image ici (par exemple, affichez-le ou enregistrez-le)
+            image_data = chunk.data
+            image_array = bytearray(image_data)
+
+            # Utilisez Matplotlib pour afficher l'image
+            image = mpimg.imread(io.BytesIO(image_array), format='JPG')
+            plt.imshow(image)
+            plt.show()
+
+        # Vous pouvez renvoyer une réponse indiquant le succès de l'opération
+        return file_pb2.UploadStatus(success=True)
+
     def StreamAudio(self, request_iterator, context):
             chunk_size = 1024
             sample_format = pyaudio.paInt16
