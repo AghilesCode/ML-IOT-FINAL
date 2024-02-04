@@ -21,52 +21,33 @@ class MonServiceServicer(file_pb2_grpc.MonServiceServicer):
         # Renvoyer un message de remerciement dans la réponse
         return file_pb2.ReponseCoordonnees(message="Merci pour les coordonnées!")
 
-    def UploadImage(self, request_iterator, context):
-        image_data = b''
-        for chunk in request_iterator:
-<<<<<<< HEAD
-            image_data += chunk.data
-        image = Image.open(BytesIO(image_data))
-        image.show()
-        return file_pb2.UploadStatus(success=True)
-=======
-            # Traitez chaque morceau d'image ici (par exemple, affichez-le ou enregistrez-le)
-            image_data = chunk.data
-            image_array = bytearray(image_data)
-
-            # Utilisez Matplotlib pour afficher l'image
-            image = mpimg.imread(io.BytesIO(image_array), format='JPG')
-            plt.imshow(image)
-            plt.show()
-
-        # Vous pouvez renvoyer une réponse indiquant le succès de l'opération
-        return streaming_pb2.UploadStatus(success=True)
     def StreamAudio(self, request_iterator, context):
-        chunk_size = 1024
-        sample_format = pyaudio.paInt16
-        channels = 1
-        fs = 44100
+            chunk_size = 1024
+            sample_format = pyaudio.paInt16
+            channels = 1
+            fs = 44100
 
-        p = pyaudio.PyAudio()
+            p = pyaudio.PyAudio()
 
-        stream = p.open(format=sample_format,
-                        channels=channels,
-                        rate=fs,
-                        frames_per_buffer=chunk_size,
-                        input=True)
+            stream = p.open(format=sample_format,
+                            channels=channels,
+                            rate=fs,
+                            frames_per_buffer=chunk_size,
+                            input=True)
 
-        print("Enregistrement audio en cours...")
+            print("Enregistrement audio en cours...")
 
-        try:
-            for data in stream.read(chunk_size, exception_on_overflow=False):
-                yield monprojetgrpc_pb2.AudioChunk(data=data)
-        except KeyboardInterrupt:
-            print("Enregistrement audio terminé.")
+            try:
+                while True:
+                    data = stream.read(chunk_size, exception_on_overflow=False)
+                    yield monprojetgrpc_pb2.AudioChunk(data=data)
+            except KeyboardInterrupt:
+                print("Enregistrement audio terminé.")
 
-        stream.stop_stream()
-        stream.close()
-        p.terminate()
->>>>>>> 1f33b28 (Son)
+            stream.stop_stream()
+            stream.close()
+            p.terminate()
+
 
 def serve():
     MAX_MESSAGE_LENGTH = 100 * 1024 * 1024
