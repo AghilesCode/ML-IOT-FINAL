@@ -29,6 +29,14 @@ class MonServiceStub(object):
                 request_serializer=file__pb2.ImageChunk.SerializeToString,
                 response_deserializer=file__pb2.UploadStatus.FromString,
                 )
+<<<<<<< HEAD
+=======
+        self.StreamAudio = channel.stream_stream(
+                '/monprojetgrpc.MonService/StreamAudio',
+                request_serializer=file__pb2.AudioChunk.SerializeToString,
+                response_deserializer=file__pb2.AudioChunk.FromString,
+                )
+>>>>>>> 1f33b28 (Son)
 
 
 class MonServiceServicer(object):
@@ -52,6 +60,15 @@ class MonServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+<<<<<<< HEAD
+=======
+    def StreamAudio(self, request_iterator, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+>>>>>>> 1f33b28 (Son)
 
 def add_MonServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -70,6 +87,14 @@ def add_MonServiceServicer_to_server(servicer, server):
                     request_deserializer=file__pb2.ImageChunk.FromString,
                     response_serializer=file__pb2.UploadStatus.SerializeToString,
             ),
+<<<<<<< HEAD
+=======
+            'StreamAudio': grpc.stream_stream_rpc_method_handler(
+                    servicer.StreamAudio,
+                    request_deserializer=file__pb2.AudioChunk.FromString,
+                    response_serializer=file__pb2.AudioChunk.SerializeToString,
+            ),
+>>>>>>> 1f33b28 (Son)
     }
     generic_handler = grpc.method_handlers_generic_handler(
             'monprojetgrpc.MonService', rpc_method_handlers)
@@ -130,3 +155,23 @@ class MonService(object):
             file__pb2.UploadStatus.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+<<<<<<< HEAD
+=======
+
+    @staticmethod
+    def StreamAudio(request_iterator,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.stream_stream(request_iterator, target, '/monprojetgrpc.MonService/StreamAudio',
+            file__pb2.AudioChunk.SerializeToString,
+            file__pb2.AudioChunk.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+>>>>>>> 1f33b28 (Son)
