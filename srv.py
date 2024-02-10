@@ -4,6 +4,8 @@ import file_pb2
 import file_pb2_grpc
 from PIL import Image
 from io import BytesIO
+import img_webcam
+import img_phone
 
 class MonServiceServicer(file_pb2_grpc.MonServiceServicer):
     def DireBonjour(self, request, context):
@@ -76,7 +78,21 @@ def serve():
 
     server.start()
     print("Serveur gRPC distant démarré. En attente de connexions...")
+    
+
+    print("étape de la vérication de la web cam")
+    verification_result =  img_webcam.verify_identity()
+    print("Verification result:", verification_result)
+
+    if verification_result :
+        #code du phone screen, si l'image de webcam est bonne
+        # quand tu envoies l'image de ton mobile
+       #  verification_screen_phone =  img_phone.detect_and_save_screens("/img/") faut enregistrer l'image que tu envoie dans /img et l'appeler
+        print("phone")
+    else :
+        print("error")
     server.wait_for_termination()
+
 
 if __name__ == "__main__":
     serve()
