@@ -66,33 +66,25 @@ class MonServiceServicer(file_pb2_grpc.MonServiceServicer):
 
 
 def serve():
-    MAX_MESSAGE_LENGTH = 100 * 1024 * 1024
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), options = [
-        ('grpc.max_send_message_length', MAX_MESSAGE_LENGTH),
-        ('grpc.max_receive_message_length', MAX_MESSAGE_LENGTH),
-    ])
-    file_pb2_grpc.add_MonServiceServicer_to_server(MonServiceServicer(), server)
-    
-    # Modifiez cette ligne pour écouter sur toutes les interfaces réseau
-    server.add_insecure_port("[::]:50051")
-
-    server.start()
-    print("Serveur gRPC distant démarré. En attente de connexions...")
-    
-
     print("étape de la vérication de la web cam")
     verification_result =  img_webcam.verify_identity()
     print("Verification result:", verification_result)
 
     if verification_result :
-        #code du phone screen, si l'image de webcam est bonne
-        # quand tu envoies l'image de ton mobile
-       #  verification_screen_phone =  img_phone.detect_and_save_screens("/img/") faut enregistrer l'image que tu envoie dans /img et l'appeler
-        print("phone")
+        MAX_MESSAGE_LENGTH = 100 * 1024 * 1024
+        server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), options=[
+            ('grpc.max_send_message_length', MAX_MESSAGE_LENGTH),
+            ('grpc.max_receive_message_length', MAX_MESSAGE_LENGTH),
+        ])
+        file_pb2_grpc.add_MonServiceServicer_to_server(MonServiceServicer(), server)
+
+        # Modifiez cette ligne pour écouter sur toutes les interfaces réseau
+        server.add_insecure_port("[::]:50051")
+        server.start()
+        print("Serveur gRPC distant démarré. En attente de connexions...")
+        server.wait_for_termination()
     else :
         print("error")
-    server.wait_for_termination()
-
 
 if __name__ == "__main__":
     serve()
