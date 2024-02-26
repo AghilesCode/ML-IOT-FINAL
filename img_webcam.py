@@ -11,7 +11,7 @@ def estimate_blur(image):
 def verify_identity():
     """Capture plusieurs images via la webcam, sélectionne la moins floue, et vérifie l'identité avec une image de référence spécifiée."""
     # Chemins prédéfinis
-    reference_img_path = 'C:/Users/aanis/Desktop/P03/PAS PROJET/ml_iot_project/ANIS_SAIDI_IDENTITE.png'
+    reference_img_path = '/Users/angegonzalez/Downloads/profile.HEIC'
     temp_img_path = 'path_to_save_live_capture.jpg'
     model_name = 'Facenet'
 

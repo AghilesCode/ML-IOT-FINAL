@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b828503-88e1-49fd-b3fd-ccbe8aac88a0" name="Changes" comment="Solving conflict :)">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img_webcam.py" beforeDir="false" afterPath="$PROJECT_DIR$/img_webcam.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srv.py" beforeDir="false" afterPath="$PROJECT_DIR$/srv.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,6 +55,7 @@
       <workItem from="1707400112078" duration="7479000" />
       <workItem from="1707736212220" duration="13842000" />
       <workItem from="1708003171038" duration="3804000" />
+      <workItem from="1708970450619" duration="1394000" />
     </task>
     <task id="LOCAL-00001" summary="Solving conflict :)">
       <created>1705934853200</created>
@@ -73,6 +76,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ML_IOT$srv.coverage" NAME="srv Coverage Results" MODIFIED="1708003246787" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ML_IOT$img_webcam.coverage" NAME="img_webcam Coverage Results" MODIFIED="1708970600276" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ML_IOT$test.coverage" NAME="test Coverage Results" MODIFIED="1708005045766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

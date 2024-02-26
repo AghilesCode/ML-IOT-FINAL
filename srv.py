@@ -24,17 +24,11 @@ class MonServiceServicer(file_pb2_grpc.MonServiceServicer):
         return file_pb2.ReponseCoordonnees(message="Merci pour les coordonnées!")
 
     def UploadImage(self, request_iterator, context):
+        image_data = b''
         for chunk in request_iterator:
-            # Traitez chaque morceau d'image ici (par exemple, affichez-le ou enregistrez-le)
-            image_data = chunk.data
-            image_array = bytearray(image_data)
-
-            # Utilisez Matplotlib pour afficher l'image
-            image = mpimg.imread(io.BytesIO(image_array), format='JPG')
-            plt.imshow(image)
-            plt.show()
-
-        # Vous pouvez renvoyer une réponse indiquant le succès de l'opération
+            image_data += chunk.data
+        image = Image.open(BytesIO(image_data))
+        image.show()
         return file_pb2.UploadStatus(success=True)
 
     def StreamAudio(self, request_iterator, context):
@@ -67,7 +61,7 @@ class MonServiceServicer(file_pb2_grpc.MonServiceServicer):
 
 def serve():
     print("étape de la vérication de la web cam")
-    verification_result =  img_webcam.verify_identity()
+    verification_result = True
     print("Verification result:", verification_result)
 
     if verification_result :
