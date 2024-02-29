@@ -49,7 +49,7 @@ def verify_identity():
                     print("Visage détecté : Vérification de l'identité échouée.")
                     i=i+1
                     if i == 10:
-                        print("Possibilité de triche")
+                        print("pissibilité de triche")
                 
             
             # Afficher l'image avec les visages détectés

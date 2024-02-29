@@ -6,6 +6,7 @@ from PIL import Image
 from io import BytesIO
 import img_webcam
 import img_phone
+import img_detect_face
 
 class MonServiceServicer(file_pb2_grpc.MonServiceServicer):
     def DireBonjour(self, request, context):
@@ -31,40 +32,32 @@ class MonServiceServicer(file_pb2_grpc.MonServiceServicer):
         image.show()
         return file_pb2.UploadStatus(success=True)
 
-    def StreamAudio(self, request_iterator, context):
-            chunk_size = 1024
-            sample_format = pyaudio.paInt16
-            channels = 1
-            fs = 44100
+    def ProcessAndSaveAudio(self, request_iterator, context, filename, output_format="mp3"):
+        # Parcourir chaque morceau d'audio reçu depuis le client
+        for chunk in request_iterator:
+            # Ajouter le morceau d'audio à la liste des chunks
+            self.audio_chunks.append(chunk.data)
+        
+        # Écrire les données audio dans un fichier audio brut (par exemple, WAV)
+        audio_content = b"".join(self.audio_chunks)
+        audio = AudioSegment.from_file(io.BytesIO(audio_content), format="raw")
 
-            p = pyaudio.PyAudio()
+        # Exporter le fichier audio en MP3 ou MP4
+        audio.export(filename, format=output_format)
 
-            stream = p.open(format=sample_format,
-                            channels=channels,
-                            rate=fs,
-                            frames_per_buffer=chunk_size,
-                            input=True)
-
-            print("Enregistrement audio en cours...")
-
-            try:
-                while True:
-                    data = stream.read(chunk_size, exception_on_overflow=False)
-                    yield monprojetgrpc_pb2.AudioChunk(data=data)
-            except KeyboardInterrupt:
-                print("Enregistrement audio terminé.")
-
-            stream.stop_stream()
-            stream.close()
-            p.terminate()
+        # Renvoyer un message de confirmation ou de statut au client
+        return monprojetgrpc_pb2.UploadStatus(success=True)
 
 
 def serve():
     print("étape de la vérication de la web cam")
-    verification_result = True
+    verification_result = img_webcam.verify_identity #avant l'examen verifie
     print("Verification result:", verification_result)
 
+    
     if verification_result :
+        print("début de l'examen")
+
         MAX_MESSAGE_LENGTH = 100 * 1024 * 1024
         server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), options=[
             ('grpc.max_send_message_length', MAX_MESSAGE_LENGTH),
@@ -77,6 +70,7 @@ def serve():
         server.start()
         print("Serveur gRPC distant démarré. En attente de connexions...")
         server.wait_for_termination()
+        print(img_detect_face.verify_identity) #open la cam et surveille l'etudiant pendant tout l'examen
     else :
         print("error")
 
