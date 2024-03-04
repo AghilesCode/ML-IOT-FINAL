@@ -6,9 +6,14 @@ from PIL import Image
 from io import BytesIO
 import img_webcam
 import img_phone
+from pydub import AudioSegment 
+import io
+
 import img_detect_face
 
 class MonServiceServicer(file_pb2_grpc.MonServiceServicer):
+    def __init__(self):
+        self.audio_chunks = []
     def DireBonjour(self, request, context):
         return file_pb2.ReponseBonjour(message=f"Bonjour, {request.nom}!")
 
@@ -32,21 +37,31 @@ class MonServiceServicer(file_pb2_grpc.MonServiceServicer):
         image.show()
         return file_pb2.UploadStatus(success=True)
 
-    def ProcessAndSaveAudio(self, request_iterator, context, filename, output_format="mp3"):
+    def StreamAudio(self, request_iterator, context):
+        print('hi')
+        audio_received = False
+        audio_chunks = []
         # Parcourir chaque morceau d'audio reçu depuis le client
         for chunk in request_iterator:
+            audio_received = True 
             # Ajouter le morceau d'audio à la liste des chunks
-            self.audio_chunks.append(chunk.data)
-        
+            audio_chunks.append(chunk.data)
+        if not audio_received:
+            print("Aucune donnée audio reçue.")
+            return monprojetgrpc_pb2.UploadStatus(success=False)
         # Écrire les données audio dans un fichier audio brut (par exemple, WAV)
-        audio_content = b"".join(self.audio_chunks)
-        audio = AudioSegment.from_file(io.BytesIO(audio_content), format="raw")
+        audio_content = b"".join(audio_chunks)
+        audio = AudioSegment.from_file("your_audio_file.wav", format="raw", sample_width=2, channels=2, frame_rate=44100)
+
 
         # Exporter le fichier audio en MP3 ou MP4
+        filename = "audio_output.mp3"  # Nom de fichier pour l'enregistrement
+        output_format = "mp3"  # Format de sortie (MP3 par défaut)
         audio.export(filename, format=output_format)
-
+        print(audio_received)
         # Renvoyer un message de confirmation ou de statut au client
-        return monprojetgrpc_pb2.UploadStatus(success=True)
+        return file_pb2.UploadStatus(success=True)
+
 
 
 def serve():
