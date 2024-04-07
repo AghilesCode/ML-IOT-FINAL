@@ -6,7 +6,7 @@ from deepface import DeepFace
 def verify_identity():
 
         # Chemin vers l'image de référence
-        reference_img_path = 'C:/a.jpg'
+        reference_img_path = '/Users/angegonzalez/Downloads/test.jpg'
 
         # Charger l'image de référence
         reference_img = cv2.imread(reference_img_path)

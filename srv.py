@@ -48,7 +48,7 @@ class MonServiceServicer(file_pb2_grpc.MonServiceServicer):
             audio_chunks.append(chunk.data)
         if not audio_received:
             print("Aucune donnée audio reçue.")
-            return monprojetgrpc_pb2.UploadStatus(success=False)
+            return file_pb2.UploadStatus(success=False)
         # Écrire les données audio dans un fichier audio brut (par exemple, WAV)
         audio_content = b"".join(audio_chunks)
         audio = AudioSegment.from_file("your_audio_file.wav", format="raw", sample_width=2, channels=2, frame_rate=44100)
@@ -62,15 +62,20 @@ class MonServiceServicer(file_pb2_grpc.MonServiceServicer):
         # Renvoyer un message de confirmation ou de statut au client
         return file_pb2.UploadStatus(success=True)
 
+from flask import Flask, request
+app = Flask(__name__)
 
+@app.route('/start', methods=['POST'])
+def start_server():
+    student = request.form['student']
+    print(student)
+    #TODO: Validate is a valid student,etc
 
-def serve():
     print("étape de la vérication de la web cam")
-    verification_result = img_webcam.verify_identity #avant l'examen verifie
+    verification_result = img_webcam.verify_identity  # avant l'examen verifie
     print("Verification result:", verification_result)
 
-    
-    if verification_result :
+    if verification_result:
         print("début de l'examen")
 
         MAX_MESSAGE_LENGTH = 100 * 1024 * 1024
@@ -84,10 +89,11 @@ def serve():
         server.add_insecure_port("[::]:50051")
         server.start()
         print("Serveur gRPC distant démarré. En attente de connexions...")
-        server.wait_for_termination()
-        print(img_detect_face.verify_identity) #open la cam et surveille l'etudiant pendant tout l'examen
-    else :
+        # server.wait_for_termination()
+        print(img_detect_face.verify_identity)  # open la cam et surveille l'etudiant pendant tout l'examen
+        return "Success", 200
+    else:
         print("error")
 
-if __name__ == "__main__":
-    serve()
+if __name__ == '__main__':
+    app.run(debug=True)

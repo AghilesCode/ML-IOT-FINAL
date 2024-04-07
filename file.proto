@@ -6,7 +6,7 @@ service MonService {
   rpc DireBonjour(MessageBonjour) returns (ReponseBonjour);
   rpc RecupererCoordonnees(Coordonnees) returns (ReponseCoordonnees);
   rpc UploadImage(stream ImageChunk) returns (UploadStatus);
-  rpc StreamAudio (stream AudioChunk) returns (stream AudioChunk);
+  rpc StreamAudio (stream AudioChunk) returns (UploadStatus);
 }
 
 message MessageBonjour {
