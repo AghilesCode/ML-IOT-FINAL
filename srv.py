@@ -63,9 +63,13 @@ class MonServiceServicer(file_pb2_grpc.MonServiceServicer):
         return file_pb2.UploadStatus(success=True)
 
 from flask import Flask, request
+from flask_cors import CORS, cross_origin
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/start', methods=['POST'])
+@cross_origin()
 def start_server():
     student = request.form['student']
     print(student)
@@ -90,7 +94,9 @@ def start_server():
         server.start()
         print("Serveur gRPC distant démarré. En attente de connexions...")
         # server.wait_for_termination()
+        
         print(img_detect_face.verify_identity)  # open la cam et surveille l'etudiant pendant tout l'examen
+        
         return "Success", 200
     else:
         print("error")
