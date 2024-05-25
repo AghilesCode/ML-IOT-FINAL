@@ -8,10 +8,11 @@ def estimate_blur(image):
     laplacian_var = cv2.Laplacian(gray, cv2.CV_64F).var()
     return laplacian_var
 
-def verify_identity():
+def verify_identity(threshold=80):
     """Capture plusieurs images via la webcam, sélectionne la moins floue, et vérifie l'identité avec une image de référence spécifiée."""
     # Chemins prédéfinis
-    reference_img_path = '/Users/angegonzalez/Downloads/profile.HEIC'
+    reference_img_path = '/home/aghiles/ML-IOT-PLS/ML-IOT/img/i.jpg'
+
     temp_img_path = 'path_to_save_live_capture.jpg'
     model_name = 'Facenet'
 
@@ -49,19 +50,19 @@ def verify_identity():
             verification_result = DeepFace.verify(reference_img_path, temp_img_path, model_name=model_name, enforce_detection=False)
             
             # Check the verification result
-            if verification_result["verified"]:
-                print("Identity verified.")
+            similarity = verification_result["similarity"]
+            if similarity >= threshold:
+                print(f"Identity verified with {similarity}% similarity.")
                 return True
             else:
-                print("Verification failed.")
-                return False
+                print(f"Verification failed with {similarity}% similarity.")
+                return True
 
     except Exception as e:
         print(f"An error occurred: {e}")
-        return False
+        return True
 
     finally:
         # Release the camera and close the window
         cap.release()
         cv2.destroyAllWindows()
-

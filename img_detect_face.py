@@ -2,11 +2,15 @@
 
 import cv2
 from deepface import DeepFace
+import datetime
+
+# Récupérer l'heure actuelle
+
 
 def verify_identity():
 
         # Chemin vers l'image de référence
-        reference_img_path = '/Users/angegonzalez/Downloads/test.jpg'
+        reference_img_path = '/home/aghiles/ML-IOT-PLS/ML-IOT/img/i.jpg'
 
         # Charger l'image de référence
         reference_img = cv2.imread(reference_img_path)
@@ -41,15 +45,15 @@ def verify_identity():
                 verification_result = DeepFace.verify(reference_img_path, detected_face, model_name='Facenet', enforce_detection=False)
                 
                 # Vérifier le résultat de la vérification
-                
+                heure_actuelle = datetime.datetime.now()
                 if verification_result["verified"]:
-                    print("Visage détecté : Identité vérifiée.")
+                    print("Visage détecté : Identité vérifiée.", heure_actuelle)
                     i=0
                 else:
-                    print("Visage détecté : Vérification de l'identité échouée.")
+                    print("Visage détecté : Vérification de l'identité échouée.", heure_actuelle)
                     i=i+1
                     if i == 10:
-                        print("pissibilité de triche")
+                        print("pissibilité de triche", heure_actuelle)
                 
             
             # Afficher l'image avec les visages détectés

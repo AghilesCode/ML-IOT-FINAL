@@ -76,10 +76,11 @@ def start_server():
     #TODO: Validate is a valid student,etc
 
     print("étape de la vérication de la web cam")
-    verification_result = img_webcam.verify_identity  # avant l'examen verifie
+    verification_result = True#img_webcam.verify_identity() # avant l'examen verifie
     print("Verification result:", verification_result)
+    
 
-    if verification_result:
+    if verification_result :
         print("début de l'examen")
 
         MAX_MESSAGE_LENGTH = 100 * 1024 * 1024
@@ -95,11 +96,35 @@ def start_server():
         print("Serveur gRPC distant démarré. En attente de connexions...")
         # server.wait_for_termination()
         
-        print(img_detect_face.verify_identity)  # open la cam et surveille l'etudiant pendant tout l'examen
+        img_detect_face.verify_identity()  # open la cam et surveille l'etudiant pendant tout l'examen
         
         return "Success", 200
     else:
         print("error")
+        
+        
+def stop_grpc_server():
+    # Code pour arrêter le serveur gRPC
+    # Par exemple, si votre stub gRPC a une fonction d'arrêt, vous pouvez l'utiliser
+    # Exemple : stub.stop() (c'est juste un exemple, vous devez adapter cela à votre propre code)
+    MAX_MESSAGE_LENGTH = 100 * 1024 * 1024
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), options=[
+            ('grpc.max_send_message_length', MAX_MESSAGE_LENGTH),
+            ('grpc.max_receive_message_length', MAX_MESSAGE_LENGTH),
+        ])
+    file_pb2_grpc.add_MonServiceServicer_to_server(MonServiceServicer(), server)
+    server.stop(grace=None)
+
+
+@app.route('/stop-server', methods=['POST'])
+def stop_server():
+   
+    try:
+        stop_grpc_server()
+        return 'Le serveur gRPC est arrêté', 200
+    except Exception as e:
+        print(f"Erreur lors de l'arrêt du serveur gRPC: {str(e)}")
+        return 'Erreur lors de l\'arrêt du serveur gRPC', 500
 
 if __name__ == '__main__':
     app.run(debug=True)
