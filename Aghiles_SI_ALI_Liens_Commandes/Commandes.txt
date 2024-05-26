@@ -1,0 +1,82 @@
+ 1197  pip3 install ply
+ 1201  python3 -m pip install grpcio
+ 1202  python3 -m pip install grpcio-tools
+ 1223  pip install opencv-python
+ 1225  pip install opencv-python
+ 1287  pip3 install grpcio
+ 1288  pip install opencv-python
+ 1290  pip3 install protobuf
+ 1321  pip install matplotlib
+ 1340  sudo pip3 install django
+ 1348  pip3 install django
+ 1350  pip install face_recognition
+ 1354  pip install opencv
+ 1355  pip install openCV
+ 1356  pip install opencv-contrib-python
+ 1357  pip install time
+ 1382  python3 -m pip install grpcio-tools
+ 1454  pip install deepface
+ 1473  pip install deepface
+ 1474  pip install --upgrade pip setuptools
+ 1475  pip install deepface
+ 1480  pip install tensorflow
+ 1482  pip install tensorRT
+ 1484  pip install tensorflow
+ 1497  pip install TensorRT
+ 1623  pip install opencv-python
+ 1734  pip install -U flask-cors
+ 1784  pip install cv2
+ 1785  pip install opencv-python
+ 1787  pip install pyautogui'
+ 1788  pip install pyautogui
+ 1790  pip install pygame
+ 1826  pip install opencv-python-headless
+ 1830  pip uninstall opencv-python
+ 1831  pip install opencv-python
+  1364  npm install -g @vue/cli
+ 1369  npm install grpc-web
+ 1371  npm install -g grpc-web
+ 1373  npm install -g grpc-web
+ 1384  npm install -g grpc-web
+ 1386  export PATH="$PATH:/chemin/vers/npm-global/bin"
+ 1393  npm list -g grpc-web
+ 1394  npm install -g grpc-web
+ 1395  npm uninstall -g grpc-web
+ 1396  npm install -g grpc-web
+ 1518  npm -v
+ 1519  npm install express
+ 1534  npm install vue
+ 1536  npm install --save-dev typescript
+ 1537  npm install --save-dev vue-class-component vue-property-decorator
+ 1677  npm install vue-router
+ 1678  npm run serve
+ 1679  npm install vue
+ 1686  npm install eslint --save-dev
+ 1688  npm run serve
+ 1689  npm install google-protobuf
+ 1743  npm run serve
+ 1757  npm install eslint --save-dev
+ 1928  sudo npm run serve
+ 1930  npm run serve
+ 1931  npm run serve -- --port 3000
+ 1932  npm install
+ 1933  npm run serve
+ 1934  npm install
+ 1935  npm audit fix --force
+ 1936  npm run serve
+ 1939  npm run serve
+ 1940  npm install @vue/cli-service --save-dev
+ 1971  npm install -g @vue/cli
+ 1972  npm install @vue/cli-service
+ 1986  npm v-
+ 1987  npm install -g npm@10.8.0
+ 1989  npm run serve
+ 1990  npm uninstall @vue/cli-service
+ 1991  npm install @vue/cli-service@5.0.0 --save-dev
+ 1992  npm show @vue/cli-service versions
+ 1993  npm run serve
+ 1994  npm install
+ 2026  npm-debug.log*
+ 2029  pnpm-debug.log*
+ 2109  npm install
+ 2110  npm run serve
