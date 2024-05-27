@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package monprojetgrpc;
+
+service MonService {
+  rpc DireBonjour(MessageBonjour) returns (ReponseBonjour);
+  rpc RecupererCoordonnees(Coordonnees) returns (ReponseCoordonnees);
+  rpc UploadImage(stream ImageChunk) returns (UploadStatus);
+  rpc StreamAudio (stream AudioChunk) returns (UploadStatus);
+  rpc UploadFile(FileRequest) returns (UploadStatus);
+}
+
+message MessageBonjour {
+  string nom = 1;
+}
+
+message ReponseBonjour {
+  string message = 1;
+}
+
+message Coordonnees {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+}
+
+message ReponseCoordonnees {
+  string message = 1;
+}
+
+message ImageChunk {
+  bytes data = 1;
+}
+
+message FileRequest {
+  bytes data = 1;
+  string filename = 2;  // Nom du fichier à sauvegarder
+}
+
+message UploadStatus {
+  bool success = 1;
+}
+
+
+
+message AudioChunk {
+  bytes data = 1;
+}
