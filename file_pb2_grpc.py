@@ -29,10 +29,15 @@ class MonServiceStub(object):
                 request_serializer=file__pb2.ImageChunk.SerializeToString,
                 response_deserializer=file__pb2.UploadStatus.FromString,
                 )
-        self.StreamAudio = channel.stream_stream(
+        self.StreamAudio = channel.stream_unary(
                 '/monprojetgrpc.MonService/StreamAudio',
                 request_serializer=file__pb2.AudioChunk.SerializeToString,
-                response_deserializer=file__pb2.AudioChunk.FromString,
+                response_deserializer=file__pb2.UploadStatus.FromString,
+                )
+        self.UploadFile = channel.unary_unary(
+                '/monprojetgrpc.MonService/UploadFile',
+                request_serializer=file__pb2.FileRequest.SerializeToString,
+                response_deserializer=file__pb2.UploadStatus.FromString,
                 )
 
 
@@ -63,6 +68,12 @@ class MonServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def UploadFile(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_MonServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -81,10 +92,15 @@ def add_MonServiceServicer_to_server(servicer, server):
                     request_deserializer=file__pb2.ImageChunk.FromString,
                     response_serializer=file__pb2.UploadStatus.SerializeToString,
             ),
-            'StreamAudio': grpc.stream_stream_rpc_method_handler(
+            'StreamAudio': grpc.stream_unary_rpc_method_handler(
                     servicer.StreamAudio,
                     request_deserializer=file__pb2.AudioChunk.FromString,
-                    response_serializer=file__pb2.AudioChunk.SerializeToString,
+                    response_serializer=file__pb2.UploadStatus.SerializeToString,
+            ),
+            'UploadFile': grpc.unary_unary_rpc_method_handler(
+                    servicer.UploadFile,
+                    request_deserializer=file__pb2.FileRequest.FromString,
+                    response_serializer=file__pb2.UploadStatus.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -158,8 +174,25 @@ class MonService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.stream_stream(request_iterator, target, '/monprojetgrpc.MonService/StreamAudio',
+        return grpc.experimental.stream_unary(request_iterator, target, '/monprojetgrpc.MonService/StreamAudio',
             file__pb2.AudioChunk.SerializeToString,
-            file__pb2.AudioChunk.FromString,
+            file__pb2.UploadStatus.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def UploadFile(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/monprojetgrpc.MonService/UploadFile',
+            file__pb2.FileRequest.SerializeToString,
+            file__pb2.UploadStatus.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -8,7 +8,7 @@ import img_webcam
 import img_phone
 from pydub import AudioSegment 
 import io
-
+import os
 import img_detect_face
 
 class MonServiceServicer(file_pb2_grpc.MonServiceServicer):
@@ -34,7 +34,7 @@ class MonServiceServicer(file_pb2_grpc.MonServiceServicer):
         for chunk in request_iterator:
             image_data += chunk.data
         image = Image.open(BytesIO(image_data))
-        image.show()
+        image.save("uploaded_files/image_temp.jpg")
         return file_pb2.UploadStatus(success=True)
 
     def StreamAudio(self, request_iterator, context):
@@ -61,6 +61,30 @@ class MonServiceServicer(file_pb2_grpc.MonServiceServicer):
         print(audio_received)
         # Renvoyer un message de confirmation ou de statut au client
         return file_pb2.UploadStatus(success=True)
+    def UploadFile(self, request, context):
+        print('UploadFile called')
+
+        # Extraire le contenu du fichier et le nom du fichier depuis la requête
+        file_content = request.data
+        filename = request.filename
+
+        # Vérifier si le répertoire "uploaded_files" existe, sinon le créer
+        if not os.path.exists("uploaded_files"):
+            os.makedirs("uploaded_files")
+
+        # Chemin complet pour sauvegarder le fichier
+        file_path = os.path.join("uploaded_files", filename)
+
+        # Écrire les données du fichier dans un fichier
+        try:
+            with open(file_path, "wb") as f:
+                f.write(file_content)
+            print(f"Fichier sauvegardé dans {file_path}")
+            return file_pb2.UploadStatus(success=True)
+        except Exception as e:
+            print(f"Erreur lors de la sauvegarde du fichier: {e}")
+            return file_pb2.UploadStatus(success=False)
+
 
 from flask import Flask, request
 from flask_cors import CORS, cross_origin
@@ -93,10 +117,12 @@ def start_server():
         # Modifiez cette ligne pour écouter sur toutes les interfaces réseau
         server.add_insecure_port("[::]:50051")
         server.start()
+       
         print("Serveur gRPC distant démarré. En attente de connexions...")
-        # server.wait_for_termination()
+        
         
         img_detect_face.verify_identity()  # open la cam et surveille l'etudiant pendant tout l'examen
+        server.wait_for_termination()
         
         return "Success", 200
     else:

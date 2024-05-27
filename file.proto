@@ -7,6 +7,7 @@ service MonService {
   rpc RecupererCoordonnees(Coordonnees) returns (ReponseCoordonnees);
   rpc UploadImage(stream ImageChunk) returns (UploadStatus);
   rpc StreamAudio (stream AudioChunk) returns (UploadStatus);
+  rpc UploadFile(FileRequest) returns (UploadStatus);
 }
 
 message MessageBonjour {
@@ -31,7 +32,10 @@ message ImageChunk {
     bytes data = 1;
 }
 
-
+message FileRequest {
+  bytes data = 1;
+  string filename = 2;  // Nom du fichier à sauvegarder
+}
 
 message UploadStatus {
     bool success = 1;
