@@ -1,4 +1,35 @@
+
+//////Aghiles////////////////////////////////////////////////////////////////
 https://github.com/grpc/grpc-web/releases
 https://stackoverflow.com/questions/60388933/installation-of-protoc-gen-grpc-web
 https://www.bing.com/images/search?view=detailV2&ccid=ZwtBTxXF&id=9B6CB8E8F320A2432C166EC4B17FC600DB45590D&thid=OIP.ZwtBTxXFxRTzjM6IpFBRggHaE8&mediaurl=https%3a%2f%2fthinkconnects.com%2fwp-content%2fuploads%2f2023%2f02%2fGeneral_Banner_WhatisIOT_4_APAC_2021_11_22.jpg&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.670b414f15c5c514f38cce88a4505182%3frik%3dDVlF2wDGf7HEbg%26pid%3dImgRaw%26r%3d0&exph=836&expw=1254&q=IOT&simid=608046689878100238&FORM=IRPRST&ck=ED73F3A78655B7B8C55CFC3499E1EF7D&selectedIndex=0&itb=0&ajaxhist=0&ajaxserp=0
 Le reste de mes sources à été fourni par chatGPT
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+////////Anis/////////////////////////////////////////////
+1. [DeepFace](https://github.com/serengil/deepface)
+2. [OpenCV](https://github.com/opencv/opencv)
+3. [NumPy](https://github.com/numpy/numpy)
+4. [Matplotlib](https://github.com/matplotlib/matplotlib)
+5. [PyAudio](https://github.com/jleb/pyaudio)
+6. [PyAudio (extended)](https://github.com/intxcc/pyaudio_portaudio)
+7. [Pytesseract](https://github.com/madmaze/pytesseract)
+8. [NLTK](https://github.com/nltk/nltk)
+9. [SpeechRecognition](https://github.com/Uberi/speech_recognition)
+10. [PyDub](https://github.com/jiaaro/pydub)
+11. chatGPT
+/////////////////////////////////////////////////////////
+
+////////Angel////////////////////////////////////////////
+
+https://flutter.dev/
+https://grpc.io/docs/languages/dart/quickstart/
+https://pub.dev/packages/sensors_plus
+https://pub.dev/packages/camera
+https://pub.dev/packages/protobuf
+https://pub.dev/packages/record
+https://pub.dev/packages/grpc
+chatGPT
+//////////////////////////////////////////////////////////

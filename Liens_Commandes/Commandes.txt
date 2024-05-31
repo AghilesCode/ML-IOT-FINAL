@@ -1,3 +1,5 @@
+ 
+ ////////////Aghiles////////////////////////////////
  1197  pip3 install ply
  1201  python3 -m pip install grpcio
  1202  python3 -m pip install grpcio-tools
@@ -80,3 +82,124 @@
  2029  pnpm-debug.log*
  2109  npm install
  2110  npm run serve
+ ////////////////////////////////////////////////////
+
+/////////////////////////////////Anis/////////////////////////////////////////////
+
+# Installation Guide for ml_functions.py
+
+## Requirements
+
+To run the provided Python scripts, you need to install several libraries. Below are the instructions to install the required packages.
+
+### Step-by-Step Instructions
+
+1. **Python**:
+   Ensure you have Python installed on your system. You can download it from [python.org](https://www.python.org/downloads/).
+
+2. **pip**:
+   `pip` is the package installer for Python. It is typically included with Python, but you can verify its installation by running:
+   ```sh
+   python -m pip --version
+   ```
+
+3. **Installing Required Libraries**:
+   Open your command line interface (CLI) and run the following commands to install the necessary libraries:
+
+   - **DeepFace**:
+     ```sh
+     pip install deepface
+     ```
+
+   - **SpeechRecognition**:
+     ```sh
+     pip install SpeechRecognition
+     ```
+
+   - **pydub**:
+     ```sh
+     pip install pydub
+     ```
+
+   - **opencv-python**:
+     ```sh
+     pip install opencv-python
+     ```
+
+   - **pytesseract**:
+     ```sh
+     pip install pytesseract
+     ```
+
+   - **Pillow** (PIL):
+     ```sh
+     pip install Pillow
+     ```
+
+   - **nltk**:
+     ```sh
+     pip install nltk
+     ```
+
+4. **Additional Setup for pydub**:
+   `pydub` requires `ffmpeg` to be installed on your system. You can download it from [FFmpeg's official site](https://ffmpeg.org/download.html).
+
+5. **Tesseract-OCR**:
+   `pytesseract` requires Tesseract-OCR to be installed. Download and install it from [Tesseract at UB Mannheim](https://github.com/UB-Mannheim/tesseract/wiki).
+
+   After installation, you may need to configure the path to the Tesseract executable in the ml_functions script, like so:
+   ```python
+   pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+   ```
+
+6. **Download NLTK Data**:
+   For `nltk`, if there are punkt or wordnet requirements errors, you need to download additional data files. Run the following commands in ml_functions Python environment:
+   ```python
+   import nltk
+   nltk.download('punkt')
+   nltk.download('wordnet')
+   ```
+
+### Example of a `requirements.txt` File
+
+For easier installation, you can create a `requirements.txt` file with the following content:
+
+```txt
+deepface
+SpeechRecognition
+pydub
+opencv-python
+pytesseract
+Pillow
+nltk
+```
+
+Then, run:
+```sh
+pip install -r requirements.txt
+```
+
+### Final Checks
+
+To ensure everything is set up correctly, you can run a small script to test the installations:
+```python
+import speech_recognition as sr
+from pydub import AudioSegment
+import cv2
+import pytesseract
+from PIL import Image
+import nltk
+
+print("All libraries are installed successfully!")
+```
+
+Follow these steps, and you should be ready to run the provided Python scripts without any issues.
+
+
+/////////////////////////////////////////////////////////////////////////////////
+
+////////////Angel//////////////////////////////////////
+Pour installer les librairies: flutter pub get
+Pour lancer l’application mobile: flutter run
+Pour lancer le server python: python srv.py
+/////////////////////////////////////////////////////

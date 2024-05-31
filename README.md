@@ -1,8 +1,29 @@
-///////////////////////////SERVEUR gRPC et Projet Vue/////////////////////////////////////////////
+SI ALI   Aghiles 11806989 M2PLS
+SAIDI    Anis    12100980 M2EID2
+Gonzales Angel   12310835 M2PLS
 
-Pour démarrer le serveur gRPC, exécutez la commande python srv.py. Ensuite, accédez au répertoire front/ et lancez la commande npm run serve. Si des erreurs de version apparaissent, veuillez vérifier que les versions utilisées correspondent à celles spécifiées dans le 
- package.json sur le dépôt Git.
+Question sur la partie server : aghiles.si.ali@outlook.fr
+//////////////////////////
+Lire tout le README.md
+//////////////////////////
+
+
+
+///////////////////////////SERVEUR gRPC et Projet  Aghiles////////////////////////////////////////////////////////////////
+
+Pour démarrer le serveur gRPC, exécutez la commande python srv.py. Ensuite, accédez au répertoire front/ et lancez la commande npm run serve sur deux consoles différentes. Si des erreurs de version apparaissent, veuillez vérifier que les versions utilisées correspondent à celles spécifiées dans le package.json sur le dépôt Git.
 Ensuite, ouvrez votre navigateur et rendez-vous à l'adresse http://localhost:8080/ pour commencer l'examen. Sur le terminal où vous avez lancé srv.py, vous recevrez les informations transmises par la webcam. Notez qu'il est déconseillé de lancer srv.py sur un environnement WSL.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//////////////////////Angel//////////////////////////////////
+
+Partie mobille
+ connecter son téléphone lancer flutter run dans /lib là ou se situe main.dart (Android Studio)
+
+/////////////////////////////////////////////////////////////////
+
+Dans Lien_Commande il y'a deux fichier un pour le lien conteant les liens/sources utilisé pour le projet de chaque membre du groupe ainsi que pour le commandes.
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 # first_app
