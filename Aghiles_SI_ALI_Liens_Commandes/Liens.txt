@@ -1,3 +1,0 @@
-https://github.com/grpc/grpc-web/releases
-https://stackoverflow.com/questions/60388933/installation-of-protoc-gen-grpc-web
-Le reste de mes sources à été fourni par chatGPT
