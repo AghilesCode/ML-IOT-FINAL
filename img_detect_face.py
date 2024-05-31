@@ -4,6 +4,7 @@ import cv2
 from deepface import DeepFace
 import datetime
 import os
+import ml_functions
 # Récupérer l'heure actuelle
 
 
@@ -35,7 +36,7 @@ def verify_identity():
             faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
             if os.path.exists("uploaded_files/audio_temp.m4a") and os.path.exists("uploaded_files/image_temp.jpg"):
             # Call detecter_triche to analyze the files
-                detecter_triche("uploaded_files/audio_temp.m4a", "uploaded_files/image_temp.jpg")
+                ml_functions.detecter_triche("uploaded_files/audio_temp.m4a", "uploaded_files/image_temp.jpg")
             # Dessiner des rectangles autour des visages détectés
             for (x, y, w, h) in faces:
                 cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 0, 0), 2)
