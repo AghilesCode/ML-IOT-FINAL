@@ -17,14 +17,43 @@ Ensuite, ouvrez votre navigateur et rendez-vous à l'adresse http://localhost:80
 
 
 //////////////////////Angel//////////////////////////////////
-
-Partie mobille
+ Partie mobille
  connecter son téléphone lancer flutter run dans /lib là ou se situe main.dart (Android Studio)
-
 /////////////////////////////////////////////////////////////////
 
 Dans Lien_Commande il y'a deux fichier un pour le lien conteant les liens/sources utilisé pour le projet de chaque membre du groupe ainsi que pour le commandes.
+**********************************************************************************************************************
+Liens githubs:
+Le github final de notre projet Server/Front/mobile :https://github.com/AghilesCode/ML-IOT-FINAL
+Le github juste Server/Mobile:  https://github.com/AghilesCode/ML-IOT-CLT 
+**************************************************************************************
+Frameworks : Vue.js,gRPC et Flutter
+Langages : Python, node.js et dart.
 ----------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # first_app
 

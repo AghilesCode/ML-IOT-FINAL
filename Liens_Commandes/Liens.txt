@@ -31,5 +31,4 @@ https://pub.dev/packages/camera
 https://pub.dev/packages/protobuf
 https://pub.dev/packages/record
 https://pub.dev/packages/grpc
-chatGPT
 //////////////////////////////////////////////////////////
