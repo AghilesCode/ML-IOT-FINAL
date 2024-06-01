@@ -30,7 +30,7 @@ Le github juste Server/Mobile:  https://github.com/AghilesCode/ML-IOT-CLT
 Frameworks : Vue.js,gRPC et Flutter
 Langages : Python, node.js et dart.
 
-Vous devez mettre le chemin de l'image dans le code comme dans les fonction python utilisant la cam (img_detect_face) par exemple, dans le code dart aussi faudra changer des parametre lié à votre
+Vous devez mettre le chemin de l'image dans le code comme dans les fonctions pythons utilisant la cam (img_detect_face) par exemple, dans le code dart aussi faudra changer des parametres liés à votre PC.
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 
